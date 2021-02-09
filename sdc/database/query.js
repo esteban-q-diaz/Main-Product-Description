@@ -40,8 +40,6 @@ var productDetails = function(callback) {
   })
  }
 
-
-
 module.exports = {
   productDetails, checkout
 }

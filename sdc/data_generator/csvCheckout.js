@@ -6,10 +6,9 @@ var counter = 0;
 
 const dataGen = () => {
   console.time('checkout')
-  // writer.pipe(fs.createWriteStream('checkout.csv'));
-  writer.pipe(fs.createWriteStream('/Volumes/My Passport for Mac/Other/hackreactor/sdc'));
+  writer.pipe(fs.createWriteStream('checkout_pt2.csv'));
   let num = faker.random.number({ min: 1000, max: 9999 })
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 5000000; i++) {
     writer.write({
       // userNum: faker.random.number({ min: 1000, max: 9999 }),
       activeUser: faker.name.findName(),
