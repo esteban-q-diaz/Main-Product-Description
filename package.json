@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --watch",
     "nodemonRun": "nodemon server/server.js",
-    "start": "npm run build & npm run nodemonRun",
+    "start": "nodemon sdc/server/server.js",
+    "buildmon": "npm run build & npm run nodemonRun",
     "test": "jest",
     "giveMeData": "node dataMaker.js"
   },
@@ -72,6 +73,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "csv-write-stream": "^2.0.0",
     "express": "^4.17.1",
     "faker": "^5.3.1",

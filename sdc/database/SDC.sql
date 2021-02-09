@@ -27,8 +27,8 @@ CREATE TABLE productdetails(
 
 CREATE TABLE checkout (
   userNum serial PRIMARY KEY NOT NULL,
-  activeUser boolean,
-  wishList boolean,
-  watchList boolean,
+  activeUser varchar(500),
+  wishList int[],
+  watchList int[],
   userCart int[]
 );
