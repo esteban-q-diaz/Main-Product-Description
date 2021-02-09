@@ -16,13 +16,25 @@ app.use('/', express.static(path.join(__dirname, '..', 'public')));
 /* ----- GET PRODUCT DETAILS DATA --- */
 
 app.get('/api/productdetails', (req, res) => {
-  db.productDetails()
+  db.productDetails((err, data) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(data.rows)
+    }
+  })
 });
 
 /* ----- GET CHECKOUT DATA --- */
 
 app.get('/api/checkout', (req, res) => {
-  db.checkout()
+  db.checkout((err, data) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(data.rows)
+    }
+  })
 });
 
 app.listen(PORT, (err) => {
