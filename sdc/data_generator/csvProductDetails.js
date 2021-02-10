@@ -5,10 +5,10 @@ var faker = require('faker')
 var counter = 0;
 const dataGen = () => {
   console.time('productDetails')
-  writer.pipe(fs.createWriteStream('productdetails.csv'));
-  for (var i = 0; i < 10; i++) {
+  writer.pipe(fs.createWriteStream('productdetails_p2.csv'));
+  for (var i = 0; i < 25; i++) {
     writer.write({
-      // productNum: i,
+      productNum: i,
       // productNum: faker.random.number({ min: 1, max: 10000000 }),
       // productNum: generateUniqueId({length: 1, useNumbers: true, useLetters: false}),
       productName: faker.lorem.words(3),
@@ -28,7 +28,7 @@ const dataGen = () => {
       productPieceCount: faker.random.number(9999),
       vipPoints: faker.random.number(9999),
       chokeWarning: faker.random.boolean(),
-      offersFlyer: faker.random.arrayElement(['', faker.lorem.sentences(faker.random.number(3), '')]),
+      offersFlyer: faker.lorem.sentence(),
       signUpOffer: faker.random.number(1),
       // Use LoremFlicker
       offersImageLink: faker.image.avatar(),

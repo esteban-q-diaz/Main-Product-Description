@@ -19,18 +19,26 @@ const deleteQuery = {
   values: []
 }
 
-const csvProductDetails = {
-  text: "COPY productdetails (productName, productPrice, productRating, productReviewCount, productInStock, productBackOrder, productStockLimitations, productExclusiveTags, productSeriesTags, seriesName, seriesImage, productAgeRatingBottom, productAgeRatingTop, productPieceCount, vipPoints, chokeWarning, offersFlyer, signUpOffer, offersImageLink) FROM '/Volumes/My Passport for Mac/Other/hackreactor/sdc/checkout_pt2.csv' DELIMITER ',' CSV HEADER",
+const csvCheckoutImport = {
+  text: "COPY productdetails FROM '/Users/rebrnd/Documents/Hack_Reactor/Immersive/Week_9/sdc/Main-Product-Description/sdc/data_generator/productdetails_p2.csv' DELIMITER ',' CSV HEADER",
   values: []
  }
 
 
+// const csvProductDetailsExternal = {
+//   text: "COPY productdetails (productName, productPrice, productRating, productReviewCount, productInStock, productBackOrder) FROM '/Users/rebrnd/Documents/Hack_Reactor/Immersive/Week_9/sdc/Main-Product-Description/sdc/data_generator/productdetails_pt2.csv' DELIMITER ',' CSV HEADER",
+//   values: []
+//   }
+
+
 // Promises
 client.connect()
+  .then(console.time('checkout'))
   .then(() => console.log('Connected Database Successfully'))
-  .then(() => client.query(deleteQuery))
+  .then(() => client.query(csvCheckoutImport))
   .then(() => client.query("select * from productdetails"))
   .then((results) => console.table(results.rows))
+  .then(console.timeEnd('checkout'))
   .catch(e => console.log(e))
   .finally(() => client.end())
 
