@@ -11,8 +11,11 @@ const client = new Client ({
 client.connect()
 
 /* ----- data from the product details table ------*/
-var productDetails = function(callback) {
-  var query = 'SELECT * FROM productdetails'
+var productDetails = function(id, callback) {
+  var query = {
+    text: `SELECT * FROM productdetails where productNum = ${id}`,
+    value: []
+  }
 
   client.query(query, (err, data) => {
     if (err) {
@@ -25,16 +28,19 @@ var productDetails = function(callback) {
  }
 
  /* ----- data from the checkout table ------*/
- var checkout = function(callback) {
-  // client.connect()
-  var query = 'SELECT * FROM checkout'
+ var checkout = function(id, callback) {
+  var query = {
+    text: `SELECT * FROM checkout where userNum = ${id}`,
+    value: []
+  }
 
   client.query(query, (err, data) => {
+    console.time("checkoutDB")
     if (err) {
       callback(err)
     } else {
-      console.log('data')
       callback(null, data)
+      console.timeEnd("checkoutDB")
       // client.end()
     }
   })
